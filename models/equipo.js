@@ -16,7 +16,31 @@ const dataSchema = new mongoose.Schema({
   unidadMedida: {
     required: true,
     type: String,
-  }
+  },
+  enUso: [
+    {
+      id: {
+        type: String,
+      },
+      fecha_inicio: {
+        type: Date,
+      },
+      fecha_fin: {
+        type: Date,
+      },
+      cantidad: {
+        type: Number,
+      },
+    },
+  ],
+  enReparacion: {
+    type: Number,
+  },
+  disponible: {
+    required: true,
+    type: Boolean,
+    default: true
+  },
 });
 
 module.exports = mongoose.model("Equipo", dataSchema);

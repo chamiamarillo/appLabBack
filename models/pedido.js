@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const dataSchema = new mongoose.Schema({
   docente: {
+    user: { type: mongoose.Schema.Types.ObjectId, ref: "Usuario" },
     nombre: String,
     apellido: String,
     dni: Number,
@@ -20,7 +21,6 @@ const dataSchema = new mongoose.Schema({
     type: Date,
   },
   numero_laboratorio: {
-    required: true,
     type: Number,
   },
   tipo_pedido: {
@@ -29,7 +29,7 @@ const dataSchema = new mongoose.Schema({
   },
   alumnos: {
     required: true,
-    type: Number, 
+    type: Number,
   },
   edificio: {
     type: String,
@@ -49,6 +49,12 @@ const dataSchema = new mongoose.Schema({
     required: true,
     type: Number,
   },
+  
+  vigente: {
+    required: true,
+    type: Boolean,
+    default: true
+  },
   lista_equipos: [
     {
       cantidad: {
@@ -56,7 +62,7 @@ const dataSchema = new mongoose.Schema({
         type: Number,
       },
       equipo: { type: mongoose.Schema.Types.ObjectId, ref: "Equipo" },
-    }
+    },
   ],
   lista_reactivos: [
     {
@@ -88,7 +94,7 @@ const dataSchema = new mongoose.Schema({
         type: String,
       },
       reactivo: { type: mongoose.Schema.Types.ObjectId, ref: "Reactivo" },
-    }
+      }
   ],
   lista_materiales: [
     {
@@ -97,8 +103,8 @@ const dataSchema = new mongoose.Schema({
         type: Number,
       },
       material: { type: mongoose.Schema.Types.ObjectId, ref: "Material" },
-    }
-  ]
+    },
+  ],
 });
 
 module.exports = mongoose.model("Pedido", dataSchema);
