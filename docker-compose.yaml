@@ -47,7 +47,7 @@ services:
     depends_on:
       mongodb:
         condition: service_started
-  front:
+  frontend:
     image: unahur/lab-front
     build:
       context: ../appLabFront
